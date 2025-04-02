@@ -1,0 +1,111 @@
+<section class="timeline-section section-padding" id="section_3">
+  <div class="section-overlay"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="text-white mb-4">How does it work?</h2>
+      </div>
+      <section
+        class="hero-section d-flex justify-content-center align-items-center"
+        id="section_1"
+        style="background-color: transparent !important"
+      >
+        <div class="container">
+          <div class="row">
+            <div>
+              <form class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text bi-search" id="basic-addon1">
+                  </span>
+                  <input
+                    name="keyword"
+                    type="search"
+                    class="form-control"
+                    id="keyword"
+                    [(ngModel)]="url"
+                    placeholder="Url a tester"
+                    aria-label="Search"
+                  />
+
+                  <button type="submit" (click)="keepUrl()" class="form-control">
+                    Recherche
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <h2 *ngIf="inputs.length>0" class="title-detected-fields">Champs détectés </h2>
+          <input
+          type="text"
+          id="scenarioName"
+          name="scenarioName"
+          placeholder="Entrez le nom du scénario"
+          [(ngModel)]="scenarioName"
+          [ngModelOptions]="{standalone: true}"
+          class="form-control"
+          required *ngIf="inputs.length>0"
+        />
+<form (ngSubmit)="saveScenario()">
+  <div class="input-container">
+  <div *ngFor="let input of inputs">
+    <label *ngIf="input.type !=='button' &&input.type !=='submit'&& input.name"  [for]="input.name">
+      {{input.label|| input.placeholder|| 'Champ'}}
+    </label>
+    <input 
+    *ngIf="input.type !== 'button' && input.type!=='select'&& input.type !== 'submit'"
+    [type]="input.type" 
+    [name]="input.name || ''" 
+    [placeholder]="input.placeholder || ''"
+    [(ngModel)]="input.value"
+    [ngModelOptions]="{standalone:true}"
+    class="form-control"
+  />  
+  <!-- Champ select (menu déroulant) -->
+  <select
+    *ngIf="input.type === 'select'&& input.name"
+    [name]="input.name"
+    [(ngModel)]="input.value"
+    [ngModelOptions]="{standalone: true}"
+    class="form-control"
+  >
+    <option *ngFor="let option of input.options.split(',')" [value]="option">
+      {{ option }}
+    </option>
+  </select>   
+  
+   <!-- Bouton -->
+   <button *ngIf="input.type == 'submit'||input.type == 'button'"   (click)="markClicked(input, $event)"
+   [class.clicked]="input.isClicked" type="button" class="btn btn-primary">
+    {{ input.text }}
+  </button>
+
+      
+  </div>
+</div>
+
+<div class="file-upload-container" *ngIf="inputs.length>0">
+  <label for="fileInput" class="file-label">
+    <i class="bi bi-file-earmark-excel upload-icon"></i> <!-- Icône de fichier Excel   -->
+  
+    <span>Importer un fichier Excel</span>
+  </label>
+  <input
+    type="file"
+    id="fileInput"
+    (change)="onFileSelected($event)"
+    accept=".xls, .xlsx"
+    hidden 
+  />
+</div>
+
+  <div class="btn-container" *ngIf="inputs.length>0">
+    <button type="submit" class="btn-scenario">Enregistrer le scénario</button>
+  </div>
+  </form>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

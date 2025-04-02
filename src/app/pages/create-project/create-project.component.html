@@ -1,0 +1,56 @@
+<section class="timeline-section section-padding" id="section_3">
+    <div class="section-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <section class="section-padding section-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h3 class="mb-4 pb-2">🚀 Prenez en main votre projet</h3>
+                        </div>
+                        
+                        <!-- Sélection entre créer ou ouvrir un projet -->
+                        <div class="form-group">
+                            <label for="projectType">📌 Que souhaitez-vous faire ?</label>
+                            <select class="form-control" id="projectType" [(ngModel)]="isCreatingProject" (change)="validateProject()">
+                                <option [ngValue]="true">✨ Créer un nouveau projet</option>
+                                <option [ngValue]="false">📂 Ouvrir un projet existant</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Champs affichés uniquement si "Créer un projet" est sélectionné -->
+                        <div *ngIf="isCreatingProject">
+                            <div class="form-group">
+                                <label for="projectName">🏷️ Intitulé du projet</label>
+                                <input type="text" id="projectName" class="form-control" [(ngModel)]="projectName" placeholder="Saisissez le nom de votre projet">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="projectDescription">📝 Détails du projet</label>
+                                <textarea id="projectDescription" class="form-control" [(ngModel)]="projectDescription" placeholder="Décrivez brièvement votre projet"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Sélectionner un projet existant -->
+                        <div *ngIf="existingProjects.length>0">
+                            <div class="form-group">
+                                <label for="existingProject">📂 Sélectionnez un projet existant</label>
+                                <select class="form-control" id="existingProject" [(ngModel)]="selectedProject" (change)="selectProject($event)" >
+                                    <option *ngFor="let project of existingProjects" [value]="project.id">
+                                        {{ project.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Bouton Valider -->
+                        <div class="text-center mt-3">
+                            <button class="btn btn-primary" (click)="validateProject()">✅ Valider</button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

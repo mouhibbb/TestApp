@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-scenario {
+    width: 100%; /* Le bouton prend toute la largeur */
+    max-width: none !important; /* Optionnel : limite la largeur max */
+    display: block; /* S'assure qu'il s'affiche correctement */
+    margin: 20px auto; /* Centre le bouton horizontalement */
+    background-color: #80D0C7 !important;
+    color: white;
+    padding: 15px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-scenario:hover {
+    background-color: #0056b3 !important;
+    transform: scale(1.01);
+  }
+  
+  .btn-scenario:active {
+    background-color: #004085;
+    transform: scale(0.98);
+  }
+  
+  .btn-scenario:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+  }

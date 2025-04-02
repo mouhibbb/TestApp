@@ -1,0 +1,80 @@
+
+  
+  .title-detected-fields {
+    color: white; /* Texte en blanc */
+    text-align: center; /* Centre le texte horizontalement */
+    width: 100%; /* Prend toute la largeur */
+    font-size: 24px; /* Ajuste la taille du texte */
+    font-weight: bold; /* Rend le texte plus visible */
+    margin-top: 20px; /* Ajoute un peu d'espace en haut */
+  }
+  .input-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacement entre les champs */
+  }
+  
+  .input-container > div {
+    flex: 1 1 calc(50% - 20px); /* 50% de largeur moins l'espacement */
+    min-width: 300px; /* Largeur minimale pour éviter les écrasements */
+  }
+  
+  .input-container label {
+    color: white; /* Texte blanc */
+    font-weight: bold; /* Texte en gras */
+    font-size: 18px; /* Augmente la taille */
+    display: block; /* Pour que le label soit bien placé */
+    margin-bottom: 5px; /* Petit espace avant le champ */
+  }
+  select {
+    appearance: auto; /* Assurez-vous que le navigateur affiche la flèche */
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+    background-color: white; /* Fond blanc pour le champ */
+    border: 1px solid #ccc;
+    padding: 8px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn-primary{
+    width: 100%;
+  }
+  .button-container {
+    display: flex;
+    gap: 10px; /* Espacement entre les boutons */
+  }
+  
+  .clicked {
+    background-color: #80D0C7 !important; /* Vert */
+    color: white !important;
+    border: 1px solid red;
+  }
+  
+  
+  .file-upload-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px dashed #4CAF50;
+    border-radius: 8px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .upload-icon {
+    font-size: 24px;
+    color: #4CAF50;
+  }
+  
+  .file-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  

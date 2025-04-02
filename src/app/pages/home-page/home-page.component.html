@@ -1,0 +1,65 @@
+<section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-12 mx-auto">
+                <div class="card shadow-lg p-4">
+                    <h2 class="text-center mb-4" id="form-title">{{ !isRegistering ? 'Se connecter' : "S'inscrire" }}</h2>
+
+                    <form method="post" class="custom-form" id="auth-form">
+                        <div id="register-fields" *ngIf="isRegistering">
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">Prénom</label>
+                                <input type="text" [(ngModel)]="prenom" class="form-control" id="prenom" name="prenom" placeholder="Votre prénom">
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Nom</label>
+                                <input type="text" [(ngModel)]="nom" class="form-control" id="nom" name="nom" placeholder="Votre nom">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Adresse Email</label>
+                            <input type="email" [(ngModel)]="email" class="form-control" id="email" name="email" placeholder="Votre email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" [(ngModel)]="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe" required>
+                        </div>
+                        
+                        <div id="confirm-password-field" class="mb-3" *ngIf="isRegistering">
+                            <label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
+                            <input type="password" [(ngModel)]="confirmPassword" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirmez votre mot de passe">
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-3" id="login-options">
+                            <div>
+                                <input type="checkbox" id="rememberMe">
+                                <label for="rememberMe">Se souvenir de moi</label>
+                            </div>
+                            <a href="#" *ngIf="!isRegistering" class="text-primary">Mot de passe oublié ?</a>
+                        </div>
+
+                        <button type="button" (click)="inscription()" class="btn btn-primary btn-lg w-100" id="submit-button" *ngIf="isRegistering">
+                             Créer un compte
+                          </button>
+                          <button type="button" (click)="loginUser()" class="btn btn-primary btn-lg w-100" id="submit-button" *ngIf="!isRegistering">
+                           Se connecter 
+                        </button>
+                          
+                        <div class="text-center mt-3">
+                            <p id="toggle-text">
+                              <span *ngIf="!isRegistering">Pas encore inscrit ?</span>
+                              <span *ngIf="isRegistering">Déjà inscrit ?</span>
+                              <a (click)="onToggleForm($event)" id="toggle-form" >
+                                {{ isRegistering ? 'Se connecter' : 'Créer un compte' }}
+                              </a>
+                            </p>
+                          </div>
+                          
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

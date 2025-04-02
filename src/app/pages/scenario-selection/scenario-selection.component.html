@@ -1,0 +1,25 @@
+<section class="timeline-section section-padding" id="section_3">
+    <div class="section-overlay"></div>
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="text-white mb-4">Selection du scénario </h2>
+        </div>
+  
+        <div class="col-12">
+            <select id="scenarioSelect" class="form-select" [(ngModel)]="selectedScenario">
+              <option *ngFor="let scenario of scenarios" [value]="scenario.id">
+                {{ scenario.name }}
+              </option>
+            </select>
+            <br>
+            <button *ngIf="selectedScenario" (click)="sendScenario()" class="btn-scenario">
+              Ouvrir le scénario
+            </button>
+          </div>
+          
+      </div>
+    </div>
+  </section>
+  
