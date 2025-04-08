@@ -3,7 +3,7 @@ package com.example.testapp.Entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
 import java.util.Date;
 import java.util.List;
 
@@ -24,10 +24,13 @@ private String url;
 @JsonManagedReference
 private List<ScenarioInput> inputs; // Liste des inputs enregistrés
 
-    public Scenario(String name, String url) {
+    public Scenario(String name, String url, Project project) {
         this.name = name;
         this.url = url;
+        this.project = project;
     }
+
+
     public Scenario() {
     }
     // Getters et Setters

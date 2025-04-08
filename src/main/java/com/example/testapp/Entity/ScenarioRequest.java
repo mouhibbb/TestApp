@@ -12,17 +12,18 @@ public class ScenarioRequest {
     private String url;
     private List<ScenarioInputDTO> inputs;
 
-    public int getProjectId() {
+
+
+    private Long projectId;
+
+
+    public Long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(int projectId) {
+    public void setProjectId(Long projectId) {
         this.projectId = projectId;
-    }
-
-    private int projectId;
-    // Getters et Setters
-    public String getName() { return name; }
+    }    public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
     public String getUrl() { return url; }
@@ -30,4 +31,14 @@ public class ScenarioRequest {
 
     public List<ScenarioInputDTO> getInputs() { return inputs; }
     public void setInputs(List<ScenarioInputDTO> inputs) { this.inputs = inputs; }
+
+    @Override
+    public String toString() {
+        return "ScenarioRequest{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", inputs=" + inputs +
+                ", projectId=" + projectId +
+                '}';
+    }
 }

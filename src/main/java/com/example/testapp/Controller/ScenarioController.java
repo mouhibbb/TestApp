@@ -4,6 +4,7 @@ import com.example.testapp.DTO.ScenarioInputDTO;
 import com.example.testapp.Entity.Scenario;
 import com.example.testapp.Entity.*;
 
+import com.example.testapp.Repository.ProjectRepository;
 import com.example.testapp.Repository.ScenarioInputRepository;
 import com.example.testapp.Repository.ScenarioRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,11 +31,16 @@ public class ScenarioController {
     private ScenarioInputRepository scenarioInputRepository;
     @Autowired
     private UrlWebSocketController urlWebSocketController;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @PostMapping()
     public Scenario saveScenario(@RequestBody ScenarioRequest request) {
-        System.out.println(request.getProjectId(),request., request.getUrl());
-        Scenario scenario = new Scenario(request.getName(), request.getUrl());
+        System.out.println("ss  "+request.toString());
+
+        Project project=projectRepository.findById(request.getProjectId()).orElseThrow(()->new RuntimeException("project not found"));
+        Scenario scenario = new Scenario(request.getName(), request.getUrl(),project);
+
         scenario = scenarioRepository.save(scenario);
 
         for (ScenarioInputDTO inputDTO : request.getInputs()) {

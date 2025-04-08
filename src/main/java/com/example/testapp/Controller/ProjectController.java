@@ -30,7 +30,7 @@ public class ProjectController {
     public Long saveProject(@RequestBody ProjectRequestDTO project) {
 
         User user=userRepository.findByEmail(project.getEmail());
-        System.out.println(user);
+        System.out.println("user " +user);
         Project project1=new Project();
         project1.setName(project.getName());
         project1.setDescription(project.getDescription());
@@ -46,9 +46,11 @@ public class ProjectController {
         List<Project> projects=new ArrayList<>(user.getProjects());
         return ResponseEntity.ok(projects);
         }
-//        @GetMapping()
-//        public ResponseEntity<List<Scenario>>getRegisteredScenarioByIdProject(@RequestParam int id){
-//            System.out.println(id);
-//            return null;
-//        }
+        @GetMapping("/scenarios")
+        public ResponseEntity<List<Scenario>>getRegisteredScenarioByIdProject(@RequestParam Long id){
+            Project project=projectRepository.findById(id).orElseThrow(()->new RuntimeException("Project Not found"));
+            List<Scenario> scenarios=scenarioRepository.findByProject(project);
+            System.out.println(scenarios);
+            return (ResponseEntity.ok(scenarios));
+        }
 }

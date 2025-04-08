@@ -21,6 +21,8 @@ public class User {
     private String email;
     private String password;
     private boolean active;
+@OneToMany (mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+private Set<Job> jobs;
 
     public Long getIdUser() {
         return idUser;
@@ -90,4 +92,14 @@ public class User {
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
+
+    @JsonManagedReference
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
+    }
+
 }
