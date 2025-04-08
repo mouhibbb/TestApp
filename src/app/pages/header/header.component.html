@@ -16,11 +16,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-lg-5 me-lg-auto">
                 <li class="nav-item">
-                    <a class="nav-link click-scroll" routerLink="home">Accueil</a>
+                    <a class="nav-link click-scroll"  routerLink="home">Accueil</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link click-scroll" routerLink="scenario">Scenario</a>
+                    <a class="nav-link click-scroll" *ngIf="isLoggedIn" routerLink="executProcess">Executer Processus</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" *ngIf="isLoggedIn" routerLink="scenario">Scenario</a>
                 </li>
 <!-- 
                 <li class="nav-item">
@@ -49,10 +51,13 @@
 
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
-                    <a class="nav-link click-scroll" href="#section_5" (click)="deconnexion()">Déconnexion</a>
+                  <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                  <a class="nav-link click-scroll" (click)="isLoggedIn ? deconnexion() : connexion()">
+                    {{ isLoggedIn ? 'Déconnexion' : 'Connexion' }}
+                  </a>
                 </li>
-            </ul>
+              </ul>
+              
         </div>
     </div>
 </nav>

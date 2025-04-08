@@ -36,3 +36,24 @@ h3 {
     text-transform: uppercase;
     color: #2c3e50;
 }
+/* Style personnalisé pour les boutons */
+.btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 300px;
+    background-color: #ff7043  ;
+    color: #ffffff !important;
+  }
+  
+  .btn:hover {
+    transform: translateY(-5px); /* Léger déplacement vers le haut */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre au survol */
+  }
+  .d-flex {
+    display: flex;             /* Définit le conteneur comme un flexbox */
+    justify-content: center;   /* Centre les éléments horizontalement */
+    gap: 10px;                 /* Espace entre les boutons */
+}
+.flex-item {
+    flex-grow: 1;              /* Permet aux boutons de prendre l'espace disponible */
+    min-width: 100px;          /* Taille minimale pour les boutons */
+}

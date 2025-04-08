@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h2 class="text-white mb-4">How does it work?</h2>
+        <h2 class="text-white mb-4">Processus de détection</h2>
       </div>
       <section
         class="hero-section d-flex justify-content-center align-items-center"
@@ -24,12 +24,12 @@
                     class="form-control"
                     id="keyword"
                     [(ngModel)]="url"
-                    placeholder="Url a tester"
+                    placeholder="Entrez le lien du site à scanner"
                     aria-label="Search"
                   />
 
                   <button type="submit" (click)="keepUrl()" class="form-control">
-                    Recherche
+                    Analyser
                   </button>
                 </div>
               </form>
@@ -50,7 +50,7 @@
   <div class="input-container">
   <div *ngFor="let input of inputs">
     <label *ngIf="input.type !=='button' &&input.type !=='submit'&& input.name"  [for]="input.name">
-      {{input.label|| input.placeholder|| 'Champ'}}
+      {{input.name|| input.placeholder|| 'Champ'}}
     </label>
     <input 
     *ngIf="input.type !== 'button' && input.type!=='select'&& input.type !== 'submit'"

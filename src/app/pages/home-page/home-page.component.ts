@@ -84,8 +84,9 @@ export class HomePageComponent {
         if (this.password) {
           console.log('Mot de passe valide');
           // Rediriger l'utilisateur ou stocker les informations de session
-          this.router.navigate(['createproject']);
+         // this.router.navigate(['createproject']);
           localStorage.setItem('userEmail',this.email)
+          this.router.navigateByUrl('home')
           
         } else {
           console.log('Mot de passe incorrect');

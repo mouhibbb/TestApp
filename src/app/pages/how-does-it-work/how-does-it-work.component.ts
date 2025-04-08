@@ -60,14 +60,14 @@ saveScenario() {
   const scenarioData = {
     url: this.url,
     name:this.scenarioName,
-    project:localStorage.getItem("projectId")||'',
+    projectId:localStorage.getItem("projectId")||'',
     inputs: this.formData
 
   };
   console.log("scenarioData",scenarioData);
   
   this.urlService.saveScenarioService(scenarioData).subscribe({
-    next: (response) => {console.log('Scénario enregistré avec succès:', response),this.router.navigate(['scenario'])},
+    next: (response) => {console.log('Scénario enregistré avec succès:', response),this.router.navigate(['home'])},
     error: (error) => console.error('Erreur lors de l\'enregistrement du scénario:', error)
   });
 }

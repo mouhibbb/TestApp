@@ -1,0 +1,36 @@
+<section class="timelines-section section-padding" id="section_3">
+    <div class="section-overlay"></div>
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="text-white mb-4">Executer un Processus</h2>
+        </div>
+        <section
+          class="hero-section d-flex justify-content-center align-items-center"
+          id="section_1"
+          style="background-color: transparent !important"
+        >
+          <div class="container">
+            <div class="row">
+              <div>
+                   <div class="col-12">
+            <select class="form-select" [(ngModel)]="selectedJobId">
+              <option *ngFor="let job of jobs" [value]="job.idJob">
+                {{ job.jobName }}
+              </option>
+            </select>
+            <br>
+            <button *ngIf="jobs.length>0" (click)="executJob(selectedJobId)" class="btn-scenario">
+              Executer
+            </button>
+          </div>
+              </div>
+            </div>
+              
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+  

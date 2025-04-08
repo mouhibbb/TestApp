@@ -32,22 +32,48 @@
                         </div>
 
                         <!-- Sélectionner un projet existant -->
-                        <div *ngIf="existingProjects.length>0">
+                        <div *ngIf="existingProjects.length>0 &&!isCreatingProject">
                             <div class="form-group">
                                 <label for="existingProject">📂 Sélectionnez un projet existant</label>
-                                <select class="form-control" id="existingProject" [(ngModel)]="selectedProject" (change)="selectProject($event)" >
+                                <select class="form-control" id="existingProject" [(ngModel)]="selectedProject" 
+                                (change)="selectProject($event)" >
                                     <option *ngFor="let project of existingProjects" [value]="project.id">
                                         {{ project.name }}
                                     </option>
                                 </select>
                             </div>
                         </div>
-
-                        <!-- Bouton Valider -->
-                        <div class="text-center mt-3">
-                            <button class="btn btn-primary" (click)="validateProject()">✅ Valider</button>
+                    <!-- Sélectionner les scenario existant -->
+                        <div *ngIf="existingScenario.length>0 &&!isCreatingProject">
+                            <div class="form-group">
+                                <label for="projectName">🏷️ Intitulé du processus</label>
+                                <input type="text" id="jobName" class="form-control" [(ngModel)]="jobName" placeholder="Saisissez le nom de votre processus">
+                            </div>
+                            <div class="form-group">
+                                <label for="existingScenario">📂 Sélectionnez un scenario existant</label>
+                                <select class="form-control" id="existingProject" [(ngModel)]="selectedScenarios" multiple>
+                                    <option *ngFor="let scenario of existingScenario" [value]="scenario.id">
+                                        {{ scenario.name }}
+                                    </option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <!-- Champ horaire pour la réexécution quotidienne du scénario -->
+                        <div class="form-group" *ngIf="!isCreatingProject && existingScenario.length > 0">
+                            <label for="repeatTime">🕒 Heure de réexécution quotidienne</label>
+                            <input type="time" id="repeatTime" class="form-control" [(ngModel)]="repeatTime">
                         </div>
 
+                         <!-- Bouton Valider -->
+                        <div class="text-center mt-3">
+                            <button class="btn btn-success btn-lg px-4 py-2 flex-item"*ngIf="isCreatingProject" (click)="validateProject()"><i class="bi bi-check-circle-fill"></i> Valider</button>
+                        
+                            <button *ngIf="existingScenario.length>0 &&!isCreatingProject" class="btn btn-warning btn-lg px-4 py-2 mx-2 flex-item" 
+                                (click)="addScenario()"><i class="bi bi-plus-circle-fill"></i> Ajouter Scenario</button>
+                            <button *ngIf="existingScenario.length>0 &&!isCreatingProject" class="btn btn-info btn-lg px-4 py-2 flex-item" 
+                                (click)="saveJob()"><i class="bi bi-save-fill"></i> Enregistrer le processus </button>
+                        </div>
                     </div>
                 </div>
             </section>

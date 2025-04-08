@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BrowserTopicsComponent } from './browser-topics.component';
+import { ExecutProcessComponent } from './execut-process.component';
 
-describe('BrowserTopicsComponent', () => {
-  let component: BrowserTopicsComponent;
-  let fixture: ComponentFixture<BrowserTopicsComponent>;
+describe('ExecutProcessComponent', () => {
+  let component: ExecutProcessComponent;
+  let fixture: ComponentFixture<ExecutProcessComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowserTopicsComponent]
+      imports: [ExecutProcessComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BrowserTopicsComponent);
+    fixture = TestBed.createComponent(ExecutProcessComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

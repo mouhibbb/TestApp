@@ -3,8 +3,9 @@
         <div class="row">
             <div class="col-lg-6 col-md-8 col-12 mx-auto">
                 <div class="card shadow-lg p-4">
-                    <h2 class="text-center mb-4" id="form-title">{{ !isRegistering ? 'Se connecter' : "S'inscrire" }}</h2>
-
+                    <h2 class="text-center mb-4" id="form-title" *ngIf="!isRegistering">Se connecter</h2>
+                    <h2 class="text-center mb-4" id="form-title" *ngIf="isRegistering">S'inscrire</h2>
+                    
                     <form method="post" class="custom-form" id="auth-form">
                         <div id="register-fields" *ngIf="isRegistering">
                             <div class="mb-3">
@@ -52,12 +53,12 @@
                               <span *ngIf="!isRegistering">Pas encore inscrit ?</span>
                               <span *ngIf="isRegistering">Déjà inscrit ?</span>
                               <a (click)="onToggleForm($event)" id="toggle-form" >
-                                {{ isRegistering ? 'Se connecter' : 'Créer un compte' }}
+                                {{ isRegistering ? "Se connecter" : "Créer un compte" }}
                               </a>
                             </p>
                           </div>
                           
-                    </form>
+                    </form> 
                 </div>
             </div>
         </div>

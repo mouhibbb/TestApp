@@ -12,6 +12,7 @@ export class ScenarioSelectionService {
   constructor(private http: HttpClient) {}
 
   getScenarios(): Observable<any[]> {
+    
     return this.http.get<any[]>(`${this.apiUrl}`);
   }
 

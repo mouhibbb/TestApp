@@ -19,6 +19,8 @@ export class NewProjectService {
       return this.httpClient.get(`${this.api}`,{params:{email}})
     }
     getRegisteredScenariByProjectId(id:string){
-     return this.httpClient.get(`${this.api}`,{params:{id}})
+      console.log("id",id);
+      
+     return this.httpClient.get(`${this.api}/scenarios`,{params:{id}})
     }
 }
