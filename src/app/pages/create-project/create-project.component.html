@@ -46,10 +46,10 @@
                     <!-- Sélectionner les scenario existant -->
                         <div *ngIf="existingScenario.length>0 &&!isCreatingProject">
                             <div class="form-group">
-                                <label for="projectName">🏷️ Intitulé du processus</label>
+                                <label for="projectName">🏷️ Intitulé du scenario</label>
                                 <input type="text" id="jobName" class="form-control" [(ngModel)]="jobName" placeholder="Saisissez le nom de votre processus">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="existingScenario">📂 Sélectionnez un scenario existant</label>
                                 <select class="form-control" id="existingProject" [(ngModel)]="selectedScenarios" multiple>
                                     <option *ngFor="let scenario of existingScenario" [value]="scenario.id">
@@ -57,7 +57,68 @@
                                     </option>
                                 </select>
                                 
-                            </div>
+                            </div> -->
+                            <!-- <div class="form-group">
+                                <label for="existingScenario">📂 Sélectionnez un scénario existant</label>
+                                <select
+                                  class="form-control"
+                                  id="existingProject"
+                                  multiple
+                                  size="5">  optionnel : taille visible -->
+                                  
+                                  <!-- <option
+                                    *ngFor="let scenario of existingScenario"
+                                    [value]="scenario.id"
+                                    [selected]="selectedScenarios.includes(+scenario.id)"
+                                    (click)="toggleScenario(+scenario.id, $event)">
+                                    {{ scenario.name }}
+                                     <span
+                                     *ngIf="selectedScenarios.includes(+scenario.id)"
+                                     class="selection-order">
+                                     ({{ selectedScenarios.indexOf(+scenario.id) + 1 }})
+                                   </span>
+                                  </option> -->
+                                  <!-- <mat-form-field appearance="fill">
+                                    <mat-label>📂 Sélectionnez un scénario existant</mat-label>
+                                    <mat-select [(ngModel)]="selectedScenarios" multiple>
+                                      <mat-option
+                                        *ngFor="let scenario of existingScenario"
+                                        [value]="scenario.id">
+                                        {{ scenario.name }}
+                                        <span
+                                          *ngIf="selectedScenarios.includes(+scenario.id)"
+                                          class="order-number"
+                                        >
+                                          ({{ selectedScenarios.indexOf(+scenario.id) + 1 }})
+                                        </span>
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                  
+                                  
+                                </select> -->
+                              <!-- </div> -->
+                              <div class="form-group">
+                              
+                                <!-- Remplacer le select classique par mat-select -->
+                                <mat-form-field appearance="fill" style="width: 100%;display: block">
+                                  <mat-label>📂 Sélectionnez un scénario existant</mat-label>
+                                  <mat-select [(ngModel)]="selectedScenarios" multiple>
+                                    <mat-option
+                                      *ngFor="let scenario of existingScenario"
+                                      [value]="scenario.id">
+                                      {{ scenario.name }}
+                                      
+                                      <!-- Affichage du numéro d'ordre, coloré -->
+                                      <span *ngIf="selectedScenarios.includes(+scenario.id)" class="order-number">
+                                        ({{ selectedScenarios.indexOf(+scenario.id) + 1 }})
+                                      </span>
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              
+                              
                         </div>
                         <!-- Champ horaire pour la réexécution quotidienne du scénario -->
                         <div class="form-group" *ngIf="!isCreatingProject && existingScenario.length > 0">

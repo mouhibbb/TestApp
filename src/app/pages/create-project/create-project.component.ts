@@ -5,10 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NewProjectService } from '../../service/new-project.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-create-project',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,MatFormFieldModule,MatSelectModule,MatOptionModule],
   templateUrl: './create-project.component.html',
   styleUrl: './create-project.component.css'
 })
@@ -123,5 +126,15 @@ saveJob() {
     error: (error) => console.error('Erreur lors de l\'enregistrement du job', error)
   });
 }
+  toggleScenario(id: number, event: MouseEvent) {
+    event.preventDefault();       // empêche la sélection native
+    event.stopPropagation();      // juste pour être safe
 
+    const idx = this.selectedScenarios.indexOf(id);
+    if (idx > -1) {
+      this.selectedScenarios.splice(idx, 1);
+    } else {
+      this.selectedScenarios.push(id);
+    }
+  }
 }

@@ -31,3 +31,6 @@
     outline: none;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
   }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
