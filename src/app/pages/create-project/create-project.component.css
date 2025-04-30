@@ -1,0 +1,69 @@
+.section-bg{
+    background: none;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    background-color: #ffffff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #2c3e50;
+}
+/* Style personnalisé pour les boutons */
+.btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 300px;
+    background-color: #ff7043  ;
+    color: #ffffff !important;
+  }
+  
+  .btn:hover {
+    transform: translateY(-5px); /* Léger déplacement vers le haut */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre au survol */
+  }
+  .d-flex {
+    display: flex;             /* Définit le conteneur comme un flexbox */
+    justify-content: center;   /* Centre les éléments horizontalement */
+    gap: 10px;                 /* Espace entre les boutons */
+}
+.flex-item {
+    flex-grow: 1;              /* Permet aux boutons de prendre l'espace disponible */
+    min-width: 100px;          /* Taille minimale pour les boutons */
+}
+.order-number {
+    color: #ff5722; /* orange par exemple */
+    font-weight: bold;
+    margin-left: 5px;
+  }
+  .mat-select{
+    width: 100% !important
+  }
+  
+  

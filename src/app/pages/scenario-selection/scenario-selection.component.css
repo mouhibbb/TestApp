@@ -1,0 +1,4 @@
+.btn-scenario {
+    display: inline-block; /* Permet au bouton de s'adapter au contenu */
+    padding: 0.5em 1em; /* Ajuste l'espace autour du texte */
+  }

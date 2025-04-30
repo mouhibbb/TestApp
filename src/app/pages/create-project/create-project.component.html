@@ -1,0 +1,143 @@
+<section class="timeline-section section-padding" id="section_3">
+    <div class="section-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <section class="section-padding section-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h3 class="mb-4 pb-2">🚀 Prenez en main votre projet</h3>
+                        </div>
+                        
+                        <!-- Sélection entre créer ou ouvrir un projet -->
+                        <div class="form-group">
+                            <label for="projectType">📌 Que souhaitez-vous faire ?</label>
+                            <select class="form-control" id="projectType" [(ngModel)]="isCreatingProject" (change)="validateProject()">
+                                <option [ngValue]="true">✨ Créer un nouveau projet</option>
+                                <option [ngValue]="false">📂 Ouvrir un projet existant</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Champs affichés uniquement si "Créer un projet" est sélectionné -->
+                        <div *ngIf="isCreatingProject">
+                            <div class="form-group">
+                                <label for="projectName">🏷️ Intitulé du projet</label>
+                                <input type="text" id="projectName" class="form-control" [(ngModel)]="projectName" placeholder="Saisissez le nom de votre projet">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="projectDescription">📝 Détails du projet</label>
+                                <textarea id="projectDescription" class="form-control" [(ngModel)]="projectDescription" placeholder="Décrivez brièvement votre projet"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Sélectionner un projet existant -->
+                        <div *ngIf="existingProjects.length>0 &&!isCreatingProject">
+                            <div class="form-group">
+                                <label for="existingProject">📂 Sélectionnez un projet existant</label>
+                                <select class="form-control" id="existingProject" [(ngModel)]="selectedProject" 
+                                (change)="selectProject($event)" >
+                                    <option *ngFor="let project of existingProjects" [value]="project.id">
+                                        {{ project.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    <!-- Sélectionner les scenario existant -->
+                        <div *ngIf="existingScenario.length>0 &&!isCreatingProject">
+                            <div class="form-group">
+                                <label for="projectName">🏷️ Intitulé du scenario</label>
+                                <input type="text" id="jobName" class="form-control" [(ngModel)]="jobName" placeholder="Saisissez le nom de votre processus">
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="existingScenario">📂 Sélectionnez un scenario existant</label>
+                                <select class="form-control" id="existingProject" [(ngModel)]="selectedScenarios" multiple>
+                                    <option *ngFor="let scenario of existingScenario" [value]="scenario.id">
+                                        {{ scenario.name }}
+                                    </option>
+                                </select>
+                                
+                            </div> -->
+                            <!-- <div class="form-group">
+                                <label for="existingScenario">📂 Sélectionnez un scénario existant</label>
+                                <select
+                                  class="form-control"
+                                  id="existingProject"
+                                  multiple
+                                  size="5">  optionnel : taille visible -->
+                                  
+                                  <!-- <option
+                                    *ngFor="let scenario of existingScenario"
+                                    [value]="scenario.id"
+                                    [selected]="selectedScenarios.includes(+scenario.id)"
+                                    (click)="toggleScenario(+scenario.id, $event)">
+                                    {{ scenario.name }}
+                                     <span
+                                     *ngIf="selectedScenarios.includes(+scenario.id)"
+                                     class="selection-order">
+                                     ({{ selectedScenarios.indexOf(+scenario.id) + 1 }})
+                                   </span>
+                                  </option> -->
+                                  <!-- <mat-form-field appearance="fill">
+                                    <mat-label>📂 Sélectionnez un scénario existant</mat-label>
+                                    <mat-select [(ngModel)]="selectedScenarios" multiple>
+                                      <mat-option
+                                        *ngFor="let scenario of existingScenario"
+                                        [value]="scenario.id">
+                                        {{ scenario.name }}
+                                        <span
+                                          *ngIf="selectedScenarios.includes(+scenario.id)"
+                                          class="order-number"
+                                        >
+                                          ({{ selectedScenarios.indexOf(+scenario.id) + 1 }})
+                                        </span>
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                  
+                                  
+                                </select> -->
+                              <!-- </div> -->
+                              <div class="form-group">
+                              
+                                <!-- Remplacer le select classique par mat-select -->
+                                <mat-form-field appearance="fill" style="width: 100%;display: block">
+                                  <mat-label>📂 Sélectionnez un scénario existant</mat-label>
+                                  <mat-select [(ngModel)]="selectedScenarios" multiple>
+                                    <mat-option
+                                      *ngFor="let scenario of existingScenario"
+                                      [value]="scenario.id">
+                                      {{ scenario.name }}
+                                      
+                                      <!-- Affichage du numéro d'ordre, coloré -->
+                                      <span *ngIf="selectedScenarios.includes(+scenario.id)" class="order-number">
+                                        ({{ selectedScenarios.indexOf(+scenario.id) + 1 }})
+                                      </span>
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              
+                              
+                        </div>
+                        <!-- Champ horaire pour la réexécution quotidienne du scénario -->
+                        <div class="form-group" *ngIf="!isCreatingProject && existingScenario.length > 0">
+                            <label for="repeatTime">🕒 Heure de réexécution quotidienne</label>
+                            <input type="time" id="repeatTime" class="form-control" [(ngModel)]="repeatTime">
+                        </div>
+
+                         <!-- Bouton Valider -->
+                        <div class="text-center mt-3">
+                            <button class="btn btn-success btn-lg px-4 py-2 flex-item"*ngIf="isCreatingProject" (click)="validateProject()"><i class="bi bi-check-circle-fill"></i> Valider</button>
+                        
+                            <button *ngIf="existingScenario.length>0 &&!isCreatingProject" class="btn btn-warning btn-lg px-4 py-2 mx-2 flex-item" 
+                                (click)="addScenario()"><i class="bi bi-plus-circle-fill"></i> Ajouter Scenario</button>
+                            <button *ngIf="existingScenario.length>0 &&!isCreatingProject" class="btn btn-info btn-lg px-4 py-2 flex-item" 
+                                (click)="saveJob()"><i class="bi bi-save-fill"></i> Enregistrer le processus </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
