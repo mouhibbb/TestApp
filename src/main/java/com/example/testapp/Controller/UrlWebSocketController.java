@@ -92,14 +92,34 @@ public class UrlWebSocketController extends TextWebSocketHandler {
         System.out.println("📊 Nombre total de connexions : " + sessions.size());
 
     }
-    public void sendMessageToClients(Map<String ,Object> message) throws IOException {
-        String jsonMessage = objectMapper.writeValueAsString(message);
+//    public void sendMessageToClients(Map<String ,Object> message) throws IOException {
+//        String jsonMessage = objectMapper.writeValueAsString(message);
+//
+//        System.out.println("🚀 Envoi de l'URL aux clients : " + jsonMessage);
+//        for (WebSocketSession session : sessions) {
+//            if (session.isOpen()) {
+//                session.sendMessage(new TextMessage(jsonMessage));
+//            }
+//        }
+//    }
+    public void sendMessageToClients(Map<String, Object> message) {
+        try {
+            String jsonMessage = objectMapper.writeValueAsString(message);
+            System.out.println("🚀 Envoi de l'URL aux clients : " + jsonMessage);
 
-        System.out.println("🚀 Envoi de l'URL aux clients : " + jsonMessage);
-        for (WebSocketSession session : sessions) {
-            if (session.isOpen()) {
-                session.sendMessage(new TextMessage(jsonMessage));
+            for (WebSocketSession session : sessions) {
+                if (session.isOpen()) {
+                    try {
+                        session.sendMessage(new TextMessage(jsonMessage));
+                    } catch (IOException e) {
+                        System.err.println("❌ Erreur lors de l'envoi à la session " + session.getId() + " : " + e.getMessage());
+                    }
+                } else {
+                    System.out.println("⚠️ Session fermée ignorée : " + session.getId());
+                }
             }
+        } catch (IOException e) {
+            System.err.println("❌ Erreur lors de la sérialisation du message : " + e.getMessage());
         }
     }
 

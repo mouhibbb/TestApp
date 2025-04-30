@@ -63,18 +63,12 @@ public class ScenarioController {
 
          Scenario scenario=scenarioRepository.findByIdWithInputs(scenarioId);
 
-        String scenarioJson=convertToJson(scenario);
         Map<String,Object> navigationMessage=new HashMap<>();
         navigationMessage.put("type","FILL_FORM");
         navigationMessage.put("scenario",convertToJson(scenario));
-        try{
             System.out.println("sendMessageToClients"+navigationMessage);
         urlWebSocketController.sendMessageToClients(navigationMessage);
-            }
-        catch (IOException e){
-            e.printStackTrace();
-            System.out.println("Erreur lors de l'envoi du message WebSocket"+e.getMessage());
-        }
+
 
         return ResponseEntity.ok(scenario);
     }
